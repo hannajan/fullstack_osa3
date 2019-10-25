@@ -44,10 +44,17 @@ let persons = [
       const person = persons.find(person => person.id === id)
 
       if(person) {
-      res.json(person)
+        res.json(person)
       } else {
           res.status(404).end()
       }
+  })
+
+  app.delete('/api/persons/:id', (req, res) => {
+      const id = Number(req.params.id)
+      persons = persons.filter(person => person.id !== id)
+
+      res.status(204).end()
   })
 
   const PORT = 3001
